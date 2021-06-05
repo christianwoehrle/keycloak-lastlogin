@@ -1,4 +1,8 @@
 # keycloak-lastlogin
+[![GoDoc](https://godoc.org/github.com/christianwoehrle/keycloak-lastlogin?status.svg)](https://godoc.org/github.com/christianwoehrle/grafana-validator)
+[![CircleCI](https://img.shields.io/circleci/project/github/christianwoehrle/keycloak-lastlogin.png)](https://circleci.com/gh/christianwoehrle/grafana-validator)
+[![Go Report Card](https://goreportcard.com/badge/github.com/christianwoehrle/keycloak-lastlogin)](https://goreportcard.com/report/github.com/christianwoehrle/grafana-validator)
+
 Simple Program to report the last login of users.
 
     Usage of lastlogin:
