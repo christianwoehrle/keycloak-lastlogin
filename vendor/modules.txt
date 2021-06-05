@@ -1,6 +1,12 @@
 # github.com/go-resty/resty/v2 v2.3.0
 ## explicit
 github.com/go-resty/resty/v2
+# github.com/sirupsen/logrus v1.8.1
+## explicit
+github.com/sirupsen/logrus
 # golang.org/x/net v0.0.0-20200822124328-c89045814202
 ## explicit
 golang.org/x/net/publicsuffix
+# golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd
+golang.org/x/sys/unix
+golang.org/x/sys/windows

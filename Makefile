@@ -16,7 +16,7 @@
 BINS := lastlogin
 
 # Where to push the docker image.
-REGISTRY ?= docker.com
+REGISTRY ?= docker.io/christianwoehrle
 
 # This version-strategy uses git tags to set the version string
 VERSION ?= $(shell git describe --tags --always --dirty)
