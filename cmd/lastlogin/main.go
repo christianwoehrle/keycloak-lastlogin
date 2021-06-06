@@ -78,13 +78,17 @@ func main() {
 		Post(*url + "auth/realms/master/protocol/openid-connect/token")
 
 	if err != nil {
-		log.Fatalln("Error accessing Keycloak Events: " + err.Error())
+		log.Fatalln("Error getting Keycloak AccessToken: " + err.Error())
 		panic("Exiting ...")
 	}
 
 	body := resp.Body()
 	var at AccessToken
-	json.Unmarshal([]byte(body), &at)
+	err = json.Unmarshal([]byte(body), &at)
+	if err != nil {
+		log.Fatalln("Error unmarshalling Keycloak Token Response: " + err.Error())
+		panic("Exiting ...")
+	}
 	log.Debugln("AccessToken: ", *at.AccessToken)
 	log.Debugln("=================================================")
 
@@ -106,7 +110,12 @@ func main() {
 
 		body2 := resp2.Body()
 		var events []EventRepresentation
-		json.Unmarshal([]byte(body2), &events)
+		err = json.Unmarshal([]byte(body2), &events)
+		if err != nil {
+			log.Fatalln("Error unmarshalling Keycloak EventRepresentation: " + err.Error())
+			panic("Exiting ...")
+		}
+
 		log.Debugf(" --> Events found: %d\n", len(events))
 		if len(events) < batchsize {
 			complete = true
