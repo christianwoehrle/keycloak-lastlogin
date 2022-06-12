@@ -1,7 +1,23 @@
 # keycloak-lastlogin
-[![GoDoc](https://godoc.org/github.com/christianwoehrle/keycloak-lastlogin?status.svg)](https://godoc.org/github.com/christianwoehrle/keycloak-lastlogin)
-[![CircleCI](https://img.shields.io/circleci/project/github/christianwoehrle/keycloak-lastlogin.png)](https://circleci.com/gh/christianwoehrle/keycloak-lastlogin)
-[![Go Report Card](https://goreportcard.com/badge/github.com/christianwoehrle/keycloak-lastlogin)](https://goreportcard.com/report/github.com/christianwoehrle/keycloak-lastlogin)
+
+
+
+<p align="center">
+  <a href="https://github.com/christianwoehrle/keycloak-lastlogin/actions">
+    <img src="https://img.shields.io/github/workflow/status/christianwoehrle/keycloak-lastlogin/goreleaser?style=flat-square" alt="Github Actions">
+  </a>
+<a href="https://godoc.org/github.com/christianwoehrle/keycloak-lastlogin">
+    <img src="https://godoc.org/github.com/christianwoehrle/keycloak-lastlogin?status.svg" alt="Github Actions">
+  </a>
+
+  <a href="https://goreportcard.com/report/github.com/christianwoehrle/keycloak-lastlogin">
+    <img src="https://goreportcard.com/badge/github.com/christianwoehrle/keycloak-lastlogin">
+  </a>
+  <img src="https://img.shields.io/github/go-mod/go-version/christianwoehrle/keycloak-lastlogin?style=flat-square">
+  <a href="https://github.com/christianwoehrle/keycloak-lastlogin/releases">
+    <img src="https://img.shields.io/github/release/christianwoehrle/keycloak-lastlogin/all.svg?style=flat-square">
+  </a>
+</p>
 
 Simple Program to report the last login of users.
 
