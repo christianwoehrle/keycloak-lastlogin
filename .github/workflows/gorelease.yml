@@ -26,3 +26,9 @@ jobs:
           workdir: cmd/lastlogin
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: Upload assets
+        uses: actions/upload-artifact@v3
+        with:
+          name: keycloak-lastlogin
+          path: dist/*
