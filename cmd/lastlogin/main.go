@@ -71,18 +71,21 @@ func main() {
 	log.Debugln("batchsize: " + strconv.Itoa(batchsize))
 
 	client2 := resty.New().SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true})
+	log.Debugln("client created: ")
 
 	resp, err := client2.R().EnableTrace().
 		SetHeader("Content-Type", "application/x-www-form-urlencoded").
 		SetBody("grant_type=password&password=" + *password + "&username=" + *user + "&client_id=admin-cli").
 		Post(*url + "auth/realms/master/protocol/openid-connect/token")
 
+	log.Debugln("Post sent: " + err.Error() + "body status:" + resp.Status())
 	if err != nil {
 		log.Fatalln("Error getting Keycloak AccessToken: " + err.Error())
 		panic("Exiting ...")
 	}
 
 	body := resp.Body()
+
 	var at AccessToken
 	err = json.Unmarshal([]byte(body), &at)
 	if err != nil {
