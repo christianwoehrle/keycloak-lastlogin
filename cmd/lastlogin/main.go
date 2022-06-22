@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"net/url"
 	"strconv"
 	"time"
 
@@ -51,7 +52,7 @@ const batchsize = 100
 func main() {
 	user := flag.String("user", "admin", "Username to access Keycloak")
 	password := flag.String("password", "xxx", "Password to access Keycloak")
-	url := flag.String("url", "https://localhost:8443/", "Keycloak-URL in the form of https://localhost:8443/")
+	URL := flag.String("url", "https://localhost:8443/", "Keycloak-URL in the form of https://localhost:8443/")
 	dateFrom := flag.String("dateFrom", time.Now().AddDate(0, 0, -1).Format("2006-01-02"), "e.g. 2021-05-10")
 	realm := flag.String("realm", "master", "e.g. master")
 	logLevel := flag.String("log", "debug", "e.g. debug/fatal")
@@ -63,9 +64,13 @@ func main() {
 		log.SetLevel(log.DebugLevel)
 	}
 
+	pw := url.QueryEscape(*password)
+
 	log.Debugln("user: " + *user)
 	log.Debugln("password: " + *password)
-	log.Debugln("url: " + *url)
+
+	log.Debugln("password escaped: " + pw)
+	log.Debugln("url: " + *URL)
 	log.Debugln("dateFrom: " + *dateFrom)
 	log.Debugln("realm: " + *realm)
 	log.Debugln("batchsize: " + strconv.Itoa(batchsize))
@@ -74,8 +79,8 @@ func main() {
 
 	resp, err := client2.R().EnableTrace().
 		SetHeader("Content-Type", "application/x-www-form-urlencoded").
-		SetBody("grant_type=password&password=" + *password + "&username=" + *user + "&client_id=admin-cli").
-		Post(*url + "auth/realms/master/protocol/openid-connect/token")
+		SetBody("grant_type=password&password=" + pw + "&username=" + *user + "&client_id=admin-cli").
+		Post(*URL + "auth/realms/master/protocol/openid-connect/token")
 
 	if err != nil {
 		log.Fatalln("Error getting Keycloak AccessToken: " + err.Error())
@@ -108,7 +113,7 @@ func main() {
 		resp2, err := client2.R().
 			EnableTrace().
 			SetAuthToken(*at.AccessToken).
-			Get(*url + "auth/admin/realms/" + *realm + "/events?type=LOGIN&max=" + strconv.Itoa(batchsize) + "&dateFrom=" + *dateFrom + "&first=" + strconv.Itoa(i*100))
+			Get(*URL + "auth/admin/realms/" + *realm + "/events?type=LOGIN&max=" + strconv.Itoa(batchsize) + "&dateFrom=" + *dateFrom + "&first=" + strconv.Itoa(i*100))
 
 		if err != nil {
 			log.Fatalln("Error accessing Keycloak Events: " + err.Error())
