@@ -45,6 +45,8 @@ Simple Program to report the last login of users.
 Example output:
 
 /opt/keycloak/bin/keycloak-lastlogin -password $KEYCLOAK_ADMIN_PASSWORD -url http://localhost:8080/ -realm dwpbank -dateFrom "2022-06-30" -log info
+
+
 swpp1x2t;2022-06-30T13:45:54Z
 
 swpp7x0t;2022-07-01T15:37:48Z
